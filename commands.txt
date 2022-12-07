@@ -1,2 +1,7 @@
-docker build --tag python-django .
-docker run --publish 8000:8000 python-django
+docker-compose build 
+docker-compose run --rm django django-admin startproject core .
+docker-compose up
+
+(IN A DIFFERENT TERMINAL)
+    docker exec -it django_container /bin/bash
+    python manage.py migrate
