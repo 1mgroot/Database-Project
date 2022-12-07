@@ -1,0 +1,42 @@
+version: '3.8'
+services:
+  db:
+    # image: mysql
+    build: 
+      context: ./MySQL/
+    ports:
+      - "3306:3306"
+    container_name: mysql_container
+    volumes:
+      - ./data/mysql/db:/var/lib/mysql
+
+  django:
+    # restart: always
+    build: .
+    volumes:
+      - .:/django
+    ports:
+      - 8000:8000
+    image: django:djangoTag
+    container_name: django_container
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python check_db.py --service-name db --ip db --port 3306 && 
+                      python manage.py migrate &&
+                      python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+    # environment:
+    #   MYSQL_DATABASE: 'django-app-db'
+    #   MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+    # volumes:
+    #   - ./data/mysql/db:/var/lib/mysql
+
+    # image: postgres
+    # volumes:
+    #   - ./data/db:/var/lib/postgresql/data
+    # environment:
+    #   - POSTGRES_DB=postgres
+    #   - POSTGRES_USER=postgres
+    #   - POSTGRES_PASSWORD=postgres
+    # container_name: postgres_db
