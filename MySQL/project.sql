@@ -3,9 +3,9 @@
 -- SQLINES DEMO *** le Database 21c
 -- SQLINES DEMO *** le Database 21c
 
-create database if not exists projectJZ;
+create database if not exists libraryDB;
 
-use projectJZ;
+use libraryDB;
 
 -- SQLINES DEMO *** no DDL - MDSYS.SDO_GEOMETRY
 
