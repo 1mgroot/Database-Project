@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from 'react';
 import './App.css';
+import Authors from './components/Authors';
+import AuthorLoadingComponent from './components/AuthorLoading';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+	const AuthorLoading = AuthorLoadingComponent(Authors);
+	const [appState, setAppState] = useState({
+		loading: false,
+		authors: null,
+	});
 
+	useEffect(() => {
+		setAppState({ loading: true });
+		const apiUrl = `http://127.0.0.1/api/authors/`;
+		fetch(apiUrl)
+			.then((data) => data.json())
+			.then((authors) => {
+				setAppState({ loading: false, authors: authors });
+			});
+	}, [setAppState]);
+	return (
+		<div className="App">
+			<h1>Existing Authors</h1>
+			<AuthorLoading isLoading={appState.loading} authors={appState.authors} />
+		</div>
+	);
+}
 export default App;
