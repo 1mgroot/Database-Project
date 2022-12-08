@@ -12,7 +12,7 @@ use libraryDB;
 -- SQLINES DEMO *** no DDL - XMLTYPE
 
 -- -- SQLINES LICENSE FOR EVALUATION USE ONLY
-CREATE TABLE author (
+CREATE TABLE library_author (
     author_id       BIGINT NOT NULL,
     lname           VARCHAR(20) NOT NULL,
     fname           VARCHAR(20) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE author (
 -- COMMENT ON COLUMN author.mailing_room IS
 --     'room of the author'; */
 
-ALTER TABLE author ADD CONSTRAINT author_pk PRIMARY KEY ( author_id );
+ALTER TABLE library_author ADD CONSTRAINT author_pk PRIMARY KEY ( author_id );
 
 -- -- SQLINES LICENSE FOR EVALUATION USE ONLY
 -- CREATE TABLE book (
@@ -313,9 +313,9 @@ ALTER TABLE author ADD CONSTRAINT author_pk PRIMARY KEY ( author_id );
 
 -- -- (e)
 
-ALTER TABLE author 
+ALTER TABLE library_author 
 	ADD CONSTRAINT c_author_lNAME check (lNAME=upper(lNAME));
-ALTER TABLE author 
+ALTER TABLE library_author 
 	ADD CONSTRAINT c_author_fNAME check (fNAME=upper(fNAME));
 -- ALTER TABLE customer 
 -- 	ADD CONSTRAINT c_customer_lNAME check (lNAME=upper(lNAME));
@@ -479,17 +479,17 @@ ALTER TABLE author
 -- -- insert into borrowing values('121','Y','1999-01-01','1999-02-01',30,'131','1999-02-02','78');
 -- -- insert into event values('999999','A','AA','E','1999-01-01','1999-01-02');
 
-INSERT INTO author VALUES('111','A','A','11111@qq.com','China','Beijing','A street','Apt 1A');
-INSERT INTO author VALUES('222','B','B','22222@qq.com','China','Shanghai','B street','Apt 1B');
-INSERT INTO author VALUES('333','C','C','33333@qq.com','China','Taiyuan','C street','Apt 1C');
-INSERT INTO author VALUES('444','D','D','44444@qq.com','China','Shenzhen','D street','Apt 1D');
-INSERT INTO author VALUES('555','E','E','55555@qq.com','China','Guangzhou','E street','Apt 1E');
-INSERT INTO author VALUES('666','F','F','66666@qq.com','China','Chengdu','F street','Apt 1F');
-INSERT INTO author VALUES('777','G','G','77777@qq.com','China','Changsha','G street','Apt 1G');
-INSERT INTO author VALUES('888','H','H','88888@qq.com','China','Wuhan','H street','Apt 1H');
-INSERT INTO author VALUES('999','I','I','99999@qq.com','China','HaErbin','I street','Apt 1I');
-INSERT INTO author VALUES('000','Y','Y','00000@qq.com','the US','New York','Y street','Apt 0Y');
-INSERT INTO author VALUES('456','j','j','00000@qq.com','the US','New York','Y street','Apt 0Y');
+INSERT INTO library_author VALUES('111','A','A','11111@qq.com','China','Beijing','A street','Apt 1A');
+INSERT INTO library_author VALUES('222','B','B','22222@qq.com','China','Shanghai','B street','Apt 1B');
+INSERT INTO library_author VALUES('333','C','C','33333@qq.com','China','Taiyuan','C street','Apt 1C');
+INSERT INTO library_author VALUES('444','D','D','44444@qq.com','China','Shenzhen','D street','Apt 1D');
+INSERT INTO library_author VALUES('555','E','E','55555@qq.com','China','Guangzhou','E street','Apt 1E');
+INSERT INTO library_author VALUES('666','F','F','66666@qq.com','China','Chengdu','F street','Apt 1F');
+INSERT INTO library_author VALUES('777','G','G','77777@qq.com','China','Changsha','G street','Apt 1G');
+INSERT INTO library_author VALUES('888','H','H','88888@qq.com','China','Wuhan','H street','Apt 1H');
+INSERT INTO library_author VALUES('999','I','I','99999@qq.com','China','HaErbin','I street','Apt 1I');
+INSERT INTO library_author VALUES('000','Y','Y','00000@qq.com','the US','New York','Y street','Apt 0Y');
+INSERT INTO library_author VALUES('456','j','j','00000@qq.com','the US','New York','Y street','Apt 0Y');
 -- INSERT INTO book VALUES('1991','English','Education'),('1992','Chinese','Fiction'),('1993','New York','Nonfiction'),('1994','Italy','History'),('1995','Australia','Horror'),('1996','California','Humor'),('1997','Santa Cruz','Math'),('1998','Irvine','Memoir'),('1999','Texas','Mystery'),('1990','French','Journal');
 -- Insert into book_author Values('1991','111'),('1992','222'),('1993','333'),('1994','444'),('1995','555'),('1996','666'),('1997','777'),('1998','888'),('1999','999'),('1990','000');
 -- insert into customer (customer_id,fName,Lname,identification_type,identification_num) values('1','Lss','t','SSN',111),('2','Laaa','t','SSN',1),('3','sdL','t','SSN',1234),('4','L','tsss','SSN',13),('5','sasdL','t','SSN',1234),('6','Lsdd','t','SSN',1),('7','L','t','SSN',1),('8','L','sss','SSN',12),('9','L','s','SSN',12),('0','s','s','SSN',123);
