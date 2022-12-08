@@ -12,9 +12,10 @@ services:
 
   django:
     # restart: always
-    build: .
+    build: 
+      context: ./django/
     volumes:
-      - .:/django
+      - ./django:/django
     ports:
       - 8000:8000
     image: django:djangoTag
