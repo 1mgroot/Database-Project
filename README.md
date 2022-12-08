@@ -16,3 +16,6 @@ Follow the instructions to [download and install Docker](https://docs.docker.com
 3. `mysql -u root`
 
 4. Now, you can use any mysql script. For example, `show databases;` `use libraryDB;` `show tables;` `select * from author;`
+
+## Host URL
+http://127.0.0.1/
