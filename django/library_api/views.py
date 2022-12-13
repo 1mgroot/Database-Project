@@ -1,17 +1,21 @@
 from rest_framework import generics
 from library.models import Author, Customer, Event,Book,StudyRoom,Copy,Invitation,Reservation,Borrowing,Invoice,Payment
 from .serializers import AuthorSerializer, CustomerSerializer, EventSerializer,BookSerializer,StudyRoomSerializer,CopySerializer,InvitationSerializer,ReservationSerializer,BorrowingSerializer,InvoiceSerializer,PaymentSerializer
+from rest_framework.generics import ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework.permissions import IsAuthenticated
 
-class AuthorList(generics.ListCreateAPIView):
+class AuthorList(ListCreateAPIView):
     serializer_class = AuthorSerializer
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         queryset = Author.objects.all()
         return queryset
         
-class AuthorDetail(generics.RetrieveUpdateDestroyAPIView):
+class AuthorDetail(RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = AuthorSerializer
     queryset = Author.objects.all()
 
