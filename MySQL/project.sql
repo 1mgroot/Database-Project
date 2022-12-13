@@ -12,7 +12,7 @@ use libraryDB;
 -- SQLINES DEMO *** no DDL - XMLTYPE
 
 -- -- SQLINES LICENSE FOR EVALUATION USE ONLY
-CREATE TABLE library_author (
+CREATE TABLE author (
     author_id       BIGINT NOT NULL,
     lname           VARCHAR(20) NOT NULL,
     fname           VARCHAR(20) NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE library_author (
 -- COMMENT ON COLUMN author.mailing_room IS
 --     'room of the author'; */
 
-ALTER TABLE library_author ADD CONSTRAINT author_pk PRIMARY KEY ( author_id );
+ALTER TABLE author ADD CONSTRAINT author_pk PRIMARY KEY ( author_id );
 
 -- -- SQLINES LICENSE FOR EVALUATION USE ONLY
 -- CREATE TABLE book (
@@ -258,13 +258,13 @@ ALTER TABLE event ADD CONSTRAINT event_pk PRIMARY KEY ( event_id );
 --     ADD CONSTRAINT copy_book_fk FOREIGN KEY ( book_id )
 --         REFERENCES book ( book_id );
 
-ALTER TABLE customer_event
-    ADD CONSTRAINT customer_event_customer_fk FOREIGN KEY ( customer_id )
-        REFERENCES customer ( customer_id );
+-- ALTER TABLE customer_event
+--     ADD CONSTRAINT customer_event_customer_fk FOREIGN KEY ( customer_id )
+--         REFERENCES customer ( customer_id );
 
-ALTER TABLE customer_event
-    ADD CONSTRAINT customer_event_event_fk FOREIGN KEY ( event_id )
-        REFERENCES event ( event_id );
+-- ALTER TABLE customer_event
+--     ADD CONSTRAINT customer_event_event_fk FOREIGN KEY ( event_id )
+--         REFERENCES event ( event_id );
 
 -- ALTER TABLE exhibition
 --     ADD CONSTRAINT exhibition_event_fk FOREIGN KEY ( event_id )
@@ -313,20 +313,20 @@ ALTER TABLE customer_event
 
 -- -- (e)
 
-ALTER TABLE library_author 
-	ADD CONSTRAINT c_author_lNAME check (lNAME=upper(lNAME));
-ALTER TABLE library_author 
-	ADD CONSTRAINT c_author_fNAME check (fNAME=upper(fNAME));
-ALTER TABLE customer 
-	ADD CONSTRAINT c_customer_lNAME check (lNAME=upper(lNAME));
-ALTER TABLE customer 
-	ADD CONSTRAINT c_customer_fNAME check (fNAME=upper(fNAME));
+-- ALTER TABLE author 
+-- 	ADD CONSTRAINT c_author_lNAME check (lNAME=upper(lNAME));
+-- ALTER TABLE author 
+-- 	ADD CONSTRAINT c_author_fNAME check (fNAME=upper(fNAME));
+-- ALTER TABLE customer 
+-- 	ADD CONSTRAINT c_customer_lNAME check (lNAME=upper(lNAME));
+-- ALTER TABLE customer 
+-- 	ADD CONSTRAINT c_customer_fNAME check (fNAME=upper(fNAME));
 -- ALTER TABLE sponsor 
 -- 	ADD CONSTRAINT c_sponsor_lNAME check (lNAME=upper(lNAME));
 -- ALTER TABLE sponsor 
 -- 	ADD CONSTRAINT c_sponsor_fNAME check (fNAME=upper(fNAME));
-ALTER TABLE event 
-	ADD CONSTRAINT c_event_check_dates check (start_datetime <= stop_datetime);
+-- ALTER TABLE event 
+-- 	ADD CONSTRAINT c_event_check_dates check (start_datetime <= stop_datetime);
 -- ALTER TABLE borrowing 
 -- 	ADD CONSTRAINT c_borrowing_check_dates check (borrow_date <= expect_return_date);
 -- ALTER TABLE borrowing 
@@ -479,24 +479,24 @@ ALTER TABLE customer
 -- -- insert into borrowing values('121','Y','1999-01-01','1999-02-01',30,'131','1999-02-02','78');
 -- -- insert into event values('999999','A','AA','E','1999-01-01','1999-01-02');
 
-INSERT INTO library_author VALUES('111','A','A','11111@qq.com','China','Beijing','A street','Apt 1A');
-INSERT INTO library_author VALUES('222','B','B','22222@qq.com','China','Shanghai','B street','Apt 1B');
-INSERT INTO library_author VALUES('333','C','C','33333@qq.com','China','Taiyuan','C street','Apt 1C');
-INSERT INTO library_author VALUES('444','D','D','44444@qq.com','China','Shenzhen','D street','Apt 1D');
-INSERT INTO library_author VALUES('555','E','E','55555@qq.com','China','Guangzhou','E street','Apt 1E');
-INSERT INTO library_author VALUES('666','F','F','66666@qq.com','China','Chengdu','F street','Apt 1F');
-INSERT INTO library_author VALUES('777','G','G','77777@qq.com','China','Changsha','G street','Apt 1G');
-INSERT INTO library_author VALUES('888','H','H','88888@qq.com','China','Wuhan','H street','Apt 1H');
-INSERT INTO library_author VALUES('999','I','I','99999@qq.com','China','HaErbin','I street','Apt 1I');
-INSERT INTO library_author VALUES('000','Y','Y','00000@qq.com','the US','New York','Y street','Apt 0Y');
-INSERT INTO library_author VALUES('456','j','j','00000@qq.com','the US','New York','Y street','Apt 0Y');
+INSERT INTO author VALUES('111','A','A','11111@qq.com','China','Beijing','A street','Apt 1A');
+INSERT INTO author VALUES('222','B','B','22222@qq.com','China','Shanghai','B street','Apt 1B');
+INSERT INTO author VALUES('333','C','C','33333@qq.com','China','Taiyuan','C street','Apt 1C');
+INSERT INTO author VALUES('444','D','D','44444@qq.com','China','Shenzhen','D street','Apt 1D');
+INSERT INTO author VALUES('555','E','E','55555@qq.com','China','Guangzhou','E street','Apt 1E');
+INSERT INTO author VALUES('666','F','F','66666@qq.com','China','Chengdu','F street','Apt 1F');
+INSERT INTO author VALUES('777','G','G','77777@qq.com','China','Changsha','G street','Apt 1G');
+INSERT INTO author VALUES('888','H','H','88888@qq.com','China','Wuhan','H street','Apt 1H');
+INSERT INTO author VALUES('999','I','I','99999@qq.com','China','HaErbin','I street','Apt 1I');
+INSERT INTO author VALUES('000','Y','Y','00000@qq.com','the US','New York','Y street','Apt 0Y');
+INSERT INTO author VALUES('456','j','j','00000@qq.com','the US','New York','Y street','Apt 0Y');
 -- INSERT INTO book VALUES('1991','English','Education'),('1992','Chinese','Fiction'),('1993','New York','Nonfiction'),('1994','Italy','History'),('1995','Australia','Horror'),('1996','California','Humor'),('1997','Santa Cruz','Math'),('1998','Irvine','Memoir'),('1999','Texas','Mystery'),('1990','French','Journal');
 -- Insert into book_author Values('1991','111'),('1992','222'),('1993','333'),('1994','444'),('1995','555'),('1996','666'),('1997','777'),('1998','888'),('1999','999'),('1990','000');
 insert into customer (customer_id,fName,Lname,identification_type,identification_num) values('1','Lss','t','SSN',111),('2','Laaa','t','SSN',1),('3','sdL','t','SSN',1234),('4','L','tsss','SSN',13),('5','sasdL','t','SSN',1234),('6','Lsdd','t','SSN',1),('7','L','t','SSN',1),('8','L','sss','SSN',12),('9','L','s','SSN',12),('0','s','s','SSN',123);
-
+-- insert into customer_event values('1','999999');
 -- insert into copy  values('11111','Y','1991'),('22222','N','1992'),('33333','Y','1993'),('44444','Y','1994'),('55555','Y','1995'),('66666','Y','1996'),('77777','Y','1997'),('88888','Y','1998'),('99999','N','1999'),('00000','N','1990');
 -- insert into borrowing values('11','Y','1999-01-01','1999-02-02',30,'1','1999-02-02','11111'),('22','Y','1999-01-01','1999-02-02',30,'2','1999-02-02','22222'),('33','Y','1999-01-01','1999-02-02',30,'3','1999-02-02','33333'),('44','Y','1999-01-01','1999-02-02',30,'4','1999-02-02','44444'),('55','Y','1999-01-01','1999-02-02',30,'5','1999-02-02','55555'),('66','Y','1999-01-01','1999-02-02',30,'6','1999-02-02','66666'),('77','Y','1999-01-01','1999-02-02',30,'7','1999-02-02','77777'),('88','Y','1999-01-01','1999-02-02',30,'8','1999-02-02','88888'),('99','Y','1999-01-01','1999-02-02',30,'9','1999-02-02','99999'),('00','Y','1999-01-01','1999-02-02',30,'0','1999-02-02','00000');
-insert into customer (customer_id,fName,Lname,phone_number, email_address, identification_type,identification_num) values('131','Lss','t','541456789','myemail.com','SSN','41234');
+-- insert into customer (customer_id,fName,Lname,phone_number, email_address, identification_type,identification_num) values('131','Lss','t','541456789','myemail.com','SSN','41234');
 -- insert into sponsor values('A11','individual','LL','TT','LT',30),('A2','individual','LLL','TTT','LT1',30),('A3','individual','LLL','TTT','LT1',30),('A4','individual','LLL','TTsd','LT',30),('A5','individual','sL','sss','LT1',30123),('A6','individual','sL','s','LT1',320),('A7','individual','Ls','Ts','Ls',30),('A8','individual','LLL','TrrT','LTr',303),('A9','individual','LLL','WWW','LTw',3980),('A0','individual','LLL','T','LTq',320);
 -- insert into study_room values('0001',10),('0002',102),('0003',103),('0004',104),('0005',105),('0006',106),('0007',107),('0008',104),('0009',102),('0000',101);
 -- insert into reservation values('0011','1999-01-01','8:00','5','0001','1'),('0022','1999-01-02','2:00','2','0002','2'),('0033','1999-01-01','3:00','3','003','3'),('0044','1999-01-01','4:00','4','004','4'),('0055','1999-05-01','8:00','5','005','5'),('0066','1999-01-01','6:00','6','006','6'),('0077','1999-01-07','8:00','7','007','7'),('0088','1999-01-18','8:00','8','008','8'),('0099','1999-03-01','9:00','5','009','9'),('0100','1999-01-02','9:00','5','000','0');
