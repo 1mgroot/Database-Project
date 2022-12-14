@@ -1,15 +1,7 @@
-import { useState } from 'react'
-// import { useSpring, animated } from 'react-spring'
 import { Button, Col, Form, Input, Row } from 'antd';
-// import reactLogo from '../../assets/react.svg'
-import './Login.css'
-//import test from './test.html'
+// import './Login.css'
 
 export default function Login() {
-    const [count, setCount] = useState(0)
-    // const props1 = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, to: { y: 0 }, from: { y: -500 }, delay: 200 })
-    // const props2 = useSpring({ to: { opacity: 1 }, from: { opacity: 0 }, to: { y: 0 }, from: { y: 500 }, delay: 200 })
-
 
     const onFinish = (values) => {
 
@@ -23,13 +15,14 @@ export default function Login() {
                   },
                 body: JSON.stringify(values)
             });
-            // const ReponseJson = await response.json();
-            console.log(response.data);
-            if (response.data.access ) {
-                localStorage.setItem("user", JSON.stringify(response.data));
+            const ReponseJson = await response.json();
+            // console.log(ReponseJson);
+            if (ReponseJson.access ) {
+                localStorage.setItem("accessToken", ReponseJson.access);
+                localStorage.setItem("refreshToken", ReponseJson.refresh);
             }
             console.log('Success:', values);
-            return response.data;
+            return ReponseJson;
         } catch(error){
             console.log(values);
             console.log(error);
@@ -102,10 +95,6 @@ export default function Login() {
                     </Button>
                 </Form.Item>
             </Form>
-            </Col>
-
-            <Col span={24}>
-                    <Button></Button>
             </Col>
         </Row>
         

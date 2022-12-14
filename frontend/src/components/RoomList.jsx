@@ -28,7 +28,7 @@ async function getRoomListFromApi(){
     const url = 'http://127.0.0.1/api/studyrooms/'
     try{
         const response = await fetch(url, {
-            // headers: authHeader,
+            headers: authHeader(),
         });
         const ReponseJson = await response.json();
         console.log(ReponseJson);
