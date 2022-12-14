@@ -1,12 +1,15 @@
 import { Button, Col, Form, Input, Layout, Row, Space } from 'antd';
 import { Content } from 'antd/es/layout/layout';
+import { useNavigate } from 'react-router-dom';
 // import './Login.css'
 
 export default function Login() {
 
+    const navigate = useNavigate();
+
     const onFinish = (values) => {
 
-        async function setUser(values){
+        async function setTokens(values){
         const url = 'http://127.0.0.1/api/token/'
         try{
             const response = await fetch(url, {
@@ -18,12 +21,16 @@ export default function Login() {
             });
             const ReponseJson = await response.json();
             // console.log(ReponseJson);
-            if (ReponseJson.access ) {
-                localStorage.setItem("accessToken", ReponseJson.access);
-                localStorage.setItem("refreshToken", ReponseJson.refresh);
+            if (ReponseJson.access && ReponseJson.refresh) {
+                await localStorage.setItem("accessToken", ReponseJson.access);
+                await localStorage.setItem("refreshToken", ReponseJson.refresh);
+                console.log('Success:', values);
+                navigate("/reservation");
             }
-            console.log('Success:', values);
-            return ReponseJson;
+            else{
+                console.log('Cannot LogIn with this email/password', values);
+            }
+
         } catch(error){
             console.log(values);
             console.log(error);
@@ -31,13 +38,7 @@ export default function Login() {
         }
         }
 
-        setUser(values);
-        // const tokens = await getTokenFromAPI(values);
-        // if(tokens && tokens.access && tokens.refresh){
-
-        // }
-        // localStorage.setItem("accessToken", tokens.access) ;
-        // localStorage.setItem("refreshToken", tokens.refresh) ;
+        setTokens(values);
       };
 
       const onFinishFailed = (errorInfo) => {
@@ -66,7 +67,7 @@ export default function Login() {
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your username!',
+                            message: 'Please input your email!',
                         },
                     ]}
                 >
