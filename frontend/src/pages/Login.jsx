@@ -1,4 +1,5 @@
-import { Button, Col, Form, Input, Row } from 'antd';
+import { Button, Col, Form, Input, Layout, Row, Space } from 'antd';
+import { Content } from 'antd/es/layout/layout';
 // import './Login.css'
 
 export default function Login() {
@@ -44,8 +45,9 @@ export default function Login() {
       };
 
     return (
-        <Row>
-            <Col>
+        <Row justify="center" align="middle">
+            <Col span={24}><h1>LOG IN TO LIBRARY MANAGEMENT SYSTEM</h1> </Col>
+            <Col style={{marginTop: "100px"}}>
                 <Form
                 name="basic"
                 labelCol={{
@@ -91,7 +93,7 @@ export default function Login() {
                     }}
                 >
                     <Button type="primary" htmlType="submit">
-                        Submit
+                        Login
                     </Button>
                 </Form.Item>
             </Form>
