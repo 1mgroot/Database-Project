@@ -96,7 +96,11 @@ class InvitationDetail(generics.RetrieveUpdateDestroyAPIView):
 class ReservationList(generics.ListCreateAPIView):
     serializer_class = ReservationSerializer
     def get_queryset(self):
-        return Reservation.objects.all()
+        queryset= Reservation.objects.all()
+        customer = self.request.query_params.get('customer')
+        if customer is not None:
+            queryset = queryset.filter(customer = customer )
+        return queryset
 
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = ReservationSerializer
