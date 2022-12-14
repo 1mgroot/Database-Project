@@ -44,12 +44,12 @@ class InvitationSerializer(serializers.ModelSerializer):
 class ReservationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Reservation
-        fields = ('Reservation_id','date','time_slot','number_of_people','room','customer')
+        fields = ('reservation_id','date','time_slot','number_of_people','room','customer')
 
 class BorrowingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Borrowing
-        fields = ('borrow_id','status','borrow_date','expect_return_date','fee','customer','actural_return_date','copy','invoice')
+        fields = ('borrow_id','status','borrow_date','expect_return_date','fee','customer','actural_return_date','copy')
 
 class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -59,4 +59,4 @@ class PaymentSerializer(serializers.ModelSerializer):
 class InvoiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Invoice
-        fields = ('Invoice_id','date','borrowing','amount')
+        fields = ('invoice_id','date','amount','borrowing','payment')
