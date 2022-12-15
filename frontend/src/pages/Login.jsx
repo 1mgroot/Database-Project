@@ -1,5 +1,4 @@
-import { Button, Col, Form, Input, Layout, Row, Space } from 'antd';
-import { Content } from 'antd/es/layout/layout';
+import { Button, Col, Form, Input, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 // import './Login.css'
 

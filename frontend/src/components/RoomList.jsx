@@ -1,3 +1,4 @@
+import { Card, List } from 'antd';
 import React, {useEffect, useState} from 'react';
 import authHeader from '../utils/authHeader';
 
@@ -56,21 +57,22 @@ export default function RoomList(){
         
     },[]);
 
-    const cards=roomList?.map(item=>{
-        return (
-            <div>
-                <h2>{item.room_id}</h2>
-                <h2>{item.capacity}</h2>
-            </div>
-        )
-    })
     
 
-    return isLoading ? (<h1>Loading</h1>) : (
-        <div>
-            {/* <p> asds</p> */}
-            {cards}
-            {/* {roomList[0].name} */}
-        </div>
+    return isLoading ? (<h1>Loading Room List</h1>) : (
+            <List
+                // grid={{gutter: 16,xs: 1,sm: 2,md: 4,lg: 4,xl: 6,xxl: 3,}}
+                header={<h2>Room List</h2>}
+                dataSource={roomList}
+                bordered={true}
+                renderItem={(item) => (
+                <List.Item>
+                    <Card>
+                        <p>Room ID: {item.room_id}</p>
+                        <p>Capacity: {item.capacity}</p>
+                    </Card>
+                </List.Item>
+                )}
+            />
     );
 }
