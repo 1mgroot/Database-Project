@@ -26,7 +26,6 @@ export default function AuthorList(){
         console.log("useEffect");
         async function getAuthorList(){
             const authorListFromApi = await getAuthorListFromApi();
-            console.log("author List",AuthorListFromApi);
             setAuthorList(authorListFromApi);
             setIsLoading(false);
         }

@@ -3,6 +3,16 @@ import React from 'react';
 import { Layout, Menu, Tabs, theme } from 'antd';
 import RoomList from '../components/RoomList';
 import ReservationList from '../components/ReservationList';
+import AuthorList from '../components/AuthorList';
+import BookList from '../components/BookList';
+import BorrowingList from '../components/BorrowingList';
+import CopyList from '../components/CopyList';
+import CustomerList from '../components/CustomerList';
+import EventList from '../components/EventList';
+import InvitationList from '../components/InvitationList';
+import InvoiceList from '../components/InvoiceList';
+import PaymentList from '../components/PaymentList';
+
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
@@ -81,9 +91,49 @@ const Home = () => {
                     children: <ReservationList/>,
                 },
                 {
-                    label: `Tab 3`,
+                    label: `Authors`,
                     key: '3',
-                    children: `Content of Tab Pane 3`,
+                    children: <AuthorList/>,
+                },
+                {
+                    label: `Book`,
+                    key: '4',
+                    children: <BookList/>,
+                },
+                {
+                    label: `Borrowing`,
+                    key: '5',
+                    children: <BorrowingList/>,
+                },
+                {
+                    label: `Copy`,
+                    key: '6',
+                    children: <CopyList/>,
+                },
+                {
+                    label: `Customer`,
+                    key: '7',
+                    children: <CustomerList/>,
+                },
+                {
+                    label: `Events`,
+                    key: '8',
+                    children: <EventList/>,
+                },
+                {
+                    label: `Invitation`,
+                    key: '9',
+                    children: <InvitationList/>,
+                },
+                {
+                    label: `Invoice`,
+                    key: '10',
+                    children: <InvoiceList/>,
+                },
+                {
+                    label: `Payment`,
+                    key: '11',
+                    children: <PaymentList/>,
                 },
                 ]}
           />
