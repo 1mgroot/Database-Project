@@ -67,6 +67,7 @@ class StudyRoomList(generics.ListCreateAPIView):
     serializer_class = StudyRoomSerializer
     def get_queryset(self):
         return StudyRoom.objects.all()
+        
 
 class StudyRoomDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = (IsAuthenticated,)
@@ -88,6 +89,7 @@ class CopyList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = CopySerializer
     def get_queryset(self):
+        queryset= Copy.objects.all()
         book = self.request.query_params.get('book')
         if book is not None:
             queryset = queryset.filter(book = book )
@@ -106,11 +108,15 @@ class InvitationList(generics.ListCreateAPIView):
         author = self.request.query_params.get('author')
         if author is not None:
             queryset = queryset.filter(author = author )
-        return queryset
+        
 
         event = self.request.query_params.get('event')
         if event is not None:
             queryset = queryset.filter(event = event )
+
+        if author is not None and event is not None:
+            queryset = queryset.filter(author = author,event = event)
+        
         return queryset
 
 class InvitationDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -122,15 +128,20 @@ class ReservationList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = ReservationSerializer
     def get_queryset(self):
+
         queryset= Reservation.objects.all()
         customer = self.request.query_params.get('customer')
+        
         if customer is not None:
             queryset = queryset.filter(customer = customer )
-        return queryset
 
         room = self.request.query_params.get('room')
         if room is not None:
             queryset = queryset.filter(room=room )
+
+        if customer is not None and room is not None:
+            queryset = queryset.filter(customer=customer,room=room)
+        
         return queryset
 
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -142,14 +153,19 @@ class BorrowingList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = BorrowingSerializer
     def get_queryset(self):
+        queryset= Borrowing.objects.all()
         customer = self.request.query_params.get('customer')
         if customer is not None:
             queryset = queryset.filter(customer = customer )
-        return queryset
+        
 
         copy = self.request.query_params.get('copy')
         if copy is not None:
             queryset = queryset.filter(copy = copy )
+
+
+        if customer is not None and copy is not None:
+            queryset = queryset.filter(customer = customer,copy=copy)
         return queryset
 
 class BorrowingDetail(generics.RetrieveUpdateDestroyAPIView):
@@ -172,14 +188,18 @@ class InvoiceList(generics.ListCreateAPIView):
     permission_classes = (IsAuthenticated,)
     serializer_class = InvoiceSerializer
     def get_queryset(self):
+        queryset= Invoice.objects.all()
         borrowing = self.request.query_params.get('borrowing')
         if borrowing is not None:
             queryset = queryset.filter(borrowing = borrowing)
-        return queryset
+        
 
         payment = self.request.query_params.get('payment')
         if payment is not None:
             queryset = queryset.filter(payment = payment )
+
+        if borrowing is not None and payment is not None:
+            queryset = queryset.filter(borrowing=borrowing,payment=payment)
         return queryset
 
 class InvoiceDetail(generics.RetrieveUpdateDestroyAPIView):
