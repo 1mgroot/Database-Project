@@ -66,7 +66,7 @@ class Invitation(models.Model):
 
 class Reservation(models.Model):
     reservation_id = models.BigIntegerField(primary_key=True)
-    date = models.DateTimeField(db_column='DATE')  # Field name made lowercase.
+    date = models.DateTimeField(db_column='DATE') 
     time_slot = models.CharField(max_length=10)
     number_of_people = models.SmallIntegerField()
     room = models.ForeignKey('StudyRoom',models.DO_NOTHING)
@@ -82,13 +82,15 @@ class Borrowing(models.Model):
     customer = models.ForeignKey('Customer', models.DO_NOTHING)
     actural_return_date = models.DateTimeField(blank=True, null=True)
     copy = models.ForeignKey('Copy', models.DO_NOTHING)
-    invoice = models.ForeignKey('Invoice', models.DO_NOTHING)
+    
 
 
 class Invoice(models.Model):
     invoice_id = models.BigIntegerField(primary_key=True)
     date = models.DateTimeField(db_column='DATE')  # Field name made lowercase.
     amount = models.DecimalField(max_digits=10, decimal_places=3, blank=True, null=True)
+    borrowing = models.ForeignKey('Borrowing',models.DO_NOTHING)
+    payment = models.ForeignKey('Payment',models.DO_NOTHING)
 
 
 class Payment(models.Model):
@@ -97,7 +99,7 @@ class Payment(models.Model):
     date = models.DateTimeField(db_column='DATE')  # Field name made lowercase.
     card_holder_lname = models.CharField(max_length=20)
     card_holder_fname = models.CharField(max_length=20)
-    invoice=models.ForeignKey('Invoice', models.DO_NOTHING)
+    
 
 
 

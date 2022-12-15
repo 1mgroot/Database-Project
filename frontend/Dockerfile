@@ -1,4 +1,11 @@
 FROM node:15.13-alpine
 WORKDIR /react
 COPY . .
-RUN npm run build
+# COPY package.json ./
+# COPY package-lock.json ./
+# COPY ./ ./
+# RUN npm i
+CMD ["npm", "run", "start"]
+# CMD ["npm", "run", "dev"]
+
+# RUN npm run build
