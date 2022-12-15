@@ -48,7 +48,8 @@ export default function ReservationList(){
                         <p>Reservation ID: {item.reservation_id}</p>
                         <p>Date: {item.date}</p>
                         <p>Time Slot: {item.time_slot}</p>
-                        <p>Room ID: {item.room_id}</p>
+                        <p>Room ID: {item.room}</p>
+                        <p>Customer ID: {item.customer}</p>
                         <p>Number of people: {item.number_of_people}</p>
                     </Card>
                 </List.Item>
