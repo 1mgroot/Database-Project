@@ -12,22 +12,25 @@ import EventList from '../components/EventList';
 import InvitationList from '../components/InvitationList';
 import InvoiceList from '../components/InvoiceList';
 import PaymentList from '../components/PaymentList';
+import { useNavigate } from 'react-router-dom';
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const items = [
     {
         key: "1",
-        label:"Rooms",
+        label:"Make Reservations",
     }
 ]
 const Home = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate();
 
   const onClick = (e) => {
     console.log('click ', e);
+    navigate("/reservation");
   };
 
   return (

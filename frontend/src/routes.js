@@ -2,7 +2,7 @@ import { useRoutes } from "react-router-dom";
 import Home from "./pages/Home";
 
 import Login from "./pages/Login";
-import Reservation from "./pages/reservation";
+import Reservation from "./pages/Reservation";
 
 
 export default function Router() {
