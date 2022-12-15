@@ -24,7 +24,7 @@ export default function Login() {
                 await localStorage.setItem("accessToken", ReponseJson.access);
                 await localStorage.setItem("refreshToken", ReponseJson.refresh);
                 console.log('Success:', values);
-                navigate("/reservation");
+                navigate("/home");
             }
             else{
                 console.log('Cannot LogIn with this email/password', values);
