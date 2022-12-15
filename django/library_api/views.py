@@ -20,20 +20,25 @@ class AuthorDetail(RetrieveUpdateDestroyAPIView):
     queryset = Author.objects.all()
 
 class CustomerList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = CustomerSerializer
+    
     def get_queryset(self):
         return Customer.objects.all()
 
 class CustomerDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = CustomerSerializer
     queryset = Customer.objects.all()
 
 class EventList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = EventSerializer
     def get_queryset(self):
         return Event.objects.all()
 
 class EventDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = EventSerializer
     queryset = Event.objects.all()
 
@@ -58,42 +63,63 @@ class EventDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class StudyRoomList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = StudyRoomSerializer
     def get_queryset(self):
         return StudyRoom.objects.all()
 
 class StudyRoomDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = StudyRoomSerializer
     queryset = StudyRoom.objects.all()
 
 class BookList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = BookSerializer
     def get_queryset(self):
         return Book.objects.all()
 
 class BookDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = BookSerializer
     queryset = Book.objects.all()
 
 class CopyList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = CopySerializer
     def get_queryset(self):
-        return Copy.objects.all()
+        book = self.request.query_params.get('book')
+        if book is not None:
+            queryset = queryset.filter(book = book )
+        return queryset
 
 class CopyDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = CopySerializer
     queryset = Copy.objects.all()
 
 class InvitationList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = InvitationSerializer
     def get_queryset(self):
-        return Invitation.objects.all()
+        queryset= Invitation.objects.all()
+        author = self.request.query_params.get('author')
+        if author is not None:
+            queryset = queryset.filter(author = author )
+        return queryset
+
+        event = self.request.query_params.get('event')
+        if event is not None:
+            queryset = queryset.filter(event = event )
+        return queryset
 
 class InvitationDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = InvitationSerializer
     queryset = Invitation.objects.all()
 
 class ReservationList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = ReservationSerializer
     def get_queryset(self):
         queryset= Reservation.objects.all()
@@ -102,33 +128,61 @@ class ReservationList(generics.ListCreateAPIView):
             queryset = queryset.filter(customer = customer )
         return queryset
 
+        room = self.request.query_params.get('room')
+        if room is not None:
+            queryset = queryset.filter(room=room )
+        return queryset
+
 class ReservationDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = ReservationSerializer
     queryset = Reservation.objects.all()
 
 class BorrowingList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = BorrowingSerializer
     def get_queryset(self):
-        return Borrowing.objects.all()
+        customer = self.request.query_params.get('customer')
+        if customer is not None:
+            queryset = queryset.filter(customer = customer )
+        return queryset
+
+        copy = self.request.query_params.get('copy')
+        if copy is not None:
+            queryset = queryset.filter(copy = copy )
+        return queryset
 
 class BorrowingDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = BorrowingSerializer
     queryset = Borrowing.objects.all()
 
 class PaymentList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = PaymentSerializer
     def get_queryset(self):
         return Payment.objects.all()
 
 class PaymentDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = PaymentSerializer
     queryset = Payment.objects.all()
 
 class InvoiceList(generics.ListCreateAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = InvoiceSerializer
     def get_queryset(self):
-        return Invoice.objects.all()
+        borrowing = self.request.query_params.get('borrowing')
+        if borrowing is not None:
+            queryset = queryset.filter(borrowing = borrowing)
+        return queryset
+
+        payment = self.request.query_params.get('payment')
+        if payment is not None:
+            queryset = queryset.filter(payment = payment )
+        return queryset
 
 class InvoiceDetail(generics.RetrieveUpdateDestroyAPIView):
+    permission_classes = (IsAuthenticated,)
     serializer_class = InvoiceSerializer
     queryset = Invoice.objects.all()
