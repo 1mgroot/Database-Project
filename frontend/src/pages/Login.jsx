@@ -1,5 +1,4 @@
-import { Button, Col, Form, Input, Layout, Row, Space } from 'antd';
-import { Content } from 'antd/es/layout/layout';
+import { Button, Col, Form, Input, Row } from 'antd';
 import { useNavigate } from 'react-router-dom';
 // import './Login.css'
 
@@ -25,7 +24,7 @@ export default function Login() {
                 await localStorage.setItem("accessToken", ReponseJson.access);
                 await localStorage.setItem("refreshToken", ReponseJson.refresh);
                 console.log('Success:', values);
-                navigate("/reservation");
+                navigate("/home");
             }
             else{
                 console.log('Cannot LogIn with this email/password', values);

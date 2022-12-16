@@ -2,8 +2,8 @@ import { Card, List } from 'antd';
 import React, {useEffect, useState} from 'react';
 import authHeader from '../utils/authHeader';
 
-async function getRoomListFromApi(){
-    const url = 'http://127.0.0.1/api/studyrooms/'
+async function getInvoiceListFromApi(){
+    const url = 'http://127.0.0.1/api/invoices/'
     try{
         const response = await fetch(url, {
             headers: authHeader(),
@@ -18,35 +18,38 @@ async function getRoomListFromApi(){
 
 }
 
-export default function RoomList(){
-    const [roomList, setRoomList] = useState(undefined);
+export default function InvoiceList(){
+    const [invoiceList, setInvoiceList] = useState(undefined);
     const [isLoading, setIsLoading] = useState(true);
     
     useEffect(()=>{
         console.log("useEffect");
-        async function getRoomList(){
-            const roomListFromApi = await getRoomListFromApi();
-            console.log("room List",roomListFromApi);
-            setRoomList(roomListFromApi);
+        async function getInvoiceList(){
+            const invoiceListFromApi = await getInvoiceListFromApi();
+            console.log("invoice List",invoiceListFromApi);
+            setInvoiceList(invoiceListFromApi);
             setIsLoading(false);
         }
-        getRoomList().catch(console.error);
+        getInvoiceList().catch(console.error);
         
     },[]);
 
     
 
-    return isLoading ? (<h1>Loading Room List</h1>) : (
+    return isLoading ? (<h1>Loading Invoice List</h1>) : (
             <List
                 // grid={{gutter: 16,xs: 1,sm: 2,md: 4,lg: 4,xl: 6,xxl: 3,}}
-                header={<h2>Room List</h2>}
-                dataSource={roomList}
+                header={<h2>Invoice List</h2>}
+                dataSource={invoiceList}
                 bordered={true}
                 renderItem={(item) => (
                 <List.Item>
                     <Card>
-                        <p>Room ID: {item.room_id}</p>
-                        <p>Capacity: {item.capacity}</p>
+                        <p>Invoice ID: {item.invoice_id}</p>
+                        <p>Date: {item.date}</p>
+                        <p>Amount: {item.amount}</p>
+                        <p>borrowing: {item.borrowing}</p>
+                        <p>Payment: {item.payment}</p>
                     </Card>
                 </List.Item>
                 )}
