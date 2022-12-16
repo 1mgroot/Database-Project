@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import './App.css';
-import Authors from './components/Authors';
-import AuthorLoadingComponent from './components/AuthorLoading';
 import {BrowserRouter} from 'react-router-dom'
 import Router from './routes';
 
